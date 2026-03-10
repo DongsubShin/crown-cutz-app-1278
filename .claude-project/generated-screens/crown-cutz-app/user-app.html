@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crown Cutz | Premium Barbering & Grooming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1E293B;
+            background-color: #FFFFFF;
+        }
+        .bg-primary { background-color: #1E3A5F; }
+        .text-primary { color: #1E3A5F; }
+        .bg-secondary { background-color: #F59E0B; }
+        .text-secondary { color: #F59E0B; }
+        .border-secondary { border-color: #F59E0B; }
+        .bg-slate-50 { background-color: #F8FAFC; }
+        .text-slate-900 { color: #0F172A; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#home" class="text-primary font-bold text-xl tracking-tight">Crown Cutz</a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-slate-600 hover:text-primary font-medium transition">Home</a>
+                <a href="#services" class="text-slate-600 hover:text-primary font-medium transition">Services</a>
+                <a href="#queue" class="text-slate-600 hover:text-primary font-medium transition">Live Queue</a>
+                <a href="#booking" class="bg-primary text-white px-5 py-2.5 rounded-md font-semibold hover:opacity-90 transition shadow-sm">Book Now</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="text-slate-900 p-2">
+                    <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="relative py-20 lg:py-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-secondary text-sm font-bold mb-6">
+                        ESTABLISHED 2024
+                    </span>
+                    <h1 class="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                        Precision Cuts for the <span class="text-primary">Modern Gentleman.</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-10 max-w-lg">
+                        Experience the ultimate grooming service at Crown Cutz. From classic tapers to modern fades, our master barbers ensure you leave looking like royalty.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#booking" class="bg-primary text-white px-8 py-4 rounded-md font-bold text-center hover:opacity-90 transition shadow-md">
+                            Book Appointment
+                        </a>
+                        <a href="#queue" class="bg-white border-2 border-slate-200 text-slate-900 px-8 py-4 rounded-md font-bold text-center hover:border-primary transition">
+                            View Wait Times
+                        </a>
+                    </div>
+                    <div class="mt-10 flex items-center gap-4">
+                        <div class="flex -space-x-2">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=1" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=2" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=3" alt="User">
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">Trusted by 500+ locals this month</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -top-4 -right-4 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl"></div>
+                    <div class="relative rounded-lg overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1000" alt="Barber Shop Interior" class="w-full h-[500px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Premium Services</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto">We offer a wide range of grooming services tailored to your specific style and needs.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6">
+                            <iconify-icon icon="mdi:scissors" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">The Signature Fade</h3>
+                        <p class="text-slate-600 mb-4">Precision fade with a custom top style, finished with a straight razor neck shave.</p>
+                        <span class="text-primary font-bold text-xl">$45.00</span>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6">
+                            <iconify-icon icon="mdi:face-man-shaving" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Beard Sculpting</h3>
+                        <p class="text-slate-600 mb-4">Complete beard shaping, hot towel treatment, and premium oil finish.</p>
+                        <span class="text-primary font-bold text-xl">$30.00</span>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6">
+                            <iconify-icon icon="mdi:crown" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Royal Treatment</h3>
+                        <p class="text-slate-600 mb-4">The ultimate package: Haircut, Beard Trim, Facial, and scalp massage.</p>
+                        <span class="text-primary font-bold text-xl">$85.00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Walk-In Queue -->
+        <section id="queue" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-primary rounded-2xl p-8 lg:p-12 text-white overflow-hidden relative">
+                    <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="flex h-3 w-3 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                                </span>
+                                <span class="text-secondary font-bold tracking-wider text-sm uppercase">Live Shop Status</span>
+                            </div>
+                            <h2 class="text-3xl font-bold mb-6">Current Walk-In Queue</h2>
+                            <p class="text-blue-100 mb-8 text-lg">Don't have an appointment? Check our real-time wait list and join the queue from your phone.</p>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/10">
+                                    <p class="text-blue-200 text-sm mb-1">Estimated Wait</p>
+                                    <p class="text-3xl font-bold">25 <span class="text-lg font-normal">mins</span></p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/10">
+                                    <p class="text-blue-200 text-sm mb-1">In Queue</p>
+                                    <p class="text-3xl font-bold">4 <span class="text-lg font-normal">people</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 text-slate-900 shadow-xl">
+                            <h3 class="font-bold text-lg mb-4 border-b pb-4">Next in Line</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-md">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">JD</div>
+                                        <span class="font-medium">John D.</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">In Chair</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-slate-100 rounded-md">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">MS</div>
+                                        <span class="font-medium">Mike S.</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">~ 5 mins</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-slate-100 rounded-md">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">AK</div>
+                                        <span class="font-medium">Alex K.</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">~ 15 mins</span>
+                                </div>
+                            </div>
+                            <button class="w-full mt-6 bg-secondary text-slate-900 font-bold py-3 rounded-md hover:opacity-90 transition">
+                                Join the Queue
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Decorative background icon -->
+                    <iconify-icon icon="mdi:clock-outline" class="absolute -bottom-10 -right-10 text-white/5" width="300"></iconify-icon>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="py-20 bg-slate-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                    <div class="bg-primary p-8 text-white text-center">
+                        <h2 class="text-3xl font-bold">Book Your Throne</h2>
+                        <p class="text-blue-100 mt-2">Select your barber and preferred time slot</p>
+                    </div>
+                    
+                    <div class="p-8">
+                        <form class="space-y-8">
+                            <!-- Step 1: Select Barber -->
+                            <div>
+                                <label class="block text-slate-900 font-bold mb-4">1. Choose Your Barber</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <!-- Barber 1 -->
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only" checked>
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=a" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Marcus">
+                                            <p class="font-bold text-sm">Marcus</p>
+                                            <p class="text-xs text-slate-500">Master</p>
+                                        </div>
+                                    </label>
+                                    <!-- Barber 2 -->
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=b" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Leo">
+                                            <p class="font-bold text-sm">Leo</p>
+                                            <p class="text-xs text-slate-500">Senior</p>
+                                        </div>
+                                    </label>
+                                    <!-- Barber 3 -->
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=c" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Sarah">
+                                            <p class="font-bold text-sm">Sarah</p>
+                                            <p class="text-xs text-slate-500">Stylist</p>
+                                        </div>
+                                    </label>
+                                    <!-- Barber 4 -->
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=d" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Victor">
+                                            <p class="font-bold text-sm">Victor</p>
+                                            <p class="text-xs text-slate-500">Master</p>
+                                        </div>
+                                    </label>
+                                    <!-- Barber 5-8 (Simplified for space) -->
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=e" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Elena">
+                                            <p class="font-bold text-sm">Elena</p>
+                                            <p class="text-xs text-slate-500">Senior</p>
+                                        </div>
+                                    </label>
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=f" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="James">
+                                            <p class="font-bold text-sm">James</p>
+                                            <p class="text-xs text-slate-500">Stylist</p>
+                                        </div>
+                                    </label>
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=g" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="Chris">
+                                            <p class="font-bold text-sm">Chris</p>
+                                            <p class="text-xs text-slate-500">Senior</p>
+                                        </div>
+                                    </label>
+                                    <label class="relative cursor-pointer group">
+                                        <input type="radio" name="barber" class="peer sr-only">
+                                        <div class="p-4 border-2 border-slate-100 rounded-lg text-center peer-checked:border-secondary peer-checked:bg-amber-50 transition group-hover:border-slate-200">
+                                            <img src="https://i.pravatar.cc/150?u=h" class="w-16 h-16 rounded-full mx-auto mb-2 grayscale group-hover:grayscale-0 transition" alt="David">
+                                            <p class="font-bold text-sm">David</p>
+                                            <p class="text-xs text-slate-500">Master</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Date & Time -->
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <label class="block text-slate-900 font-bold mb-4">2. Select Date</label>
+                                    <input type="date" class="w-full p-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-900 font-bold mb-4">3. Select Time</label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">09:00 AM</button>
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">10:30 AM</button>
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">01:00 PM</button>
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">02:30 PM</button>
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">04:00 PM</button>
+                                        <button type="button" class="p-2 border border-slate-200 rounded text-sm hover:bg-primary hover:text-white transition">05:30 PM</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Contact Info -->
+                            <div>
+                                <label class="block text-slate-900 font-bold mb-4">4. Your Information</label>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-200 rounded-md outline-none focus:ring-2 focus:ring-primary">
+                                    <input type="tel" placeholder="Phone Number" class="w-full p-3 border border-slate-200 rounded-md outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                                    <iconify-icon icon="lucide:info" width="14"></iconify-icon>
+                                    You'll receive an SMS reminder 1 hour before your appointment.
+                                </p>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary text-white py-4 rounded-md font-bold text-lg hover:opacity-90 transition shadow-lg">
+                                Confirm Booking
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loyalty / Marketing Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-secondary/10 border border-secondary/20 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="max-w-xl">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Join the Crown Club</h2>
+                        <p class="text-slate-700">Get every 10th haircut free! Sign up for our loyalty program and receive exclusive offers via SMS.</p>
+                    </div>
+                    <div class="flex w-full md:w-auto gap-2">
+                        <input type="tel" placeholder="Phone Number" class="flex-1 md:w-64 p-3 rounded-md border border-slate-200 outline-none focus:ring-2 focus:ring-secondary">
+                        <button class="bg-secondary text-slate-900 px-6 py-3 rounded-md font-bold hover:opacity-90 transition">Join</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <a href="#" class="text-white font-bold text-2xl tracking-tight mb-6 block">Crown Cutz</a>
+                    <p class="text-slate-400 max-w-sm mb-6">
+                        The premier grooming destination for modern men. We combine traditional barbering techniques with contemporary style.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition">
+                            <iconify-icon icon="mdi:instagram" width="20"></iconify-icon>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition">
+                            <iconify-icon icon="mdi:facebook" width="20"></iconify-icon>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition">
+                            <iconify-icon icon="mdi:twitter" width="20"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li><a href="#home" class="hover:text-secondary transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition">Services</a></li>
+                        <li><a href="#booking" class="hover:text-secondary transition">Book Now</a></li>
+                        <li><a href="#queue" class="hover:text-secondary transition">Live Queue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Contact Us</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:map-pin" class="mt-1 text-secondary"></iconify-icon>
+                            <span>123 Grooming Ave,<br>Style City, SC 54321</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:phone" class="text-secondary"></iconify-icon>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:clock" class="text-secondary"></iconify-icon>
+                            <span>Mon-Sat: 9am - 8pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <p>&copy; 2024 Crown Cutz. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

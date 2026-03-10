@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #ED1C24;
+  --primary-foreground: #ffffff;
+}
+
+@theme {
+  --color-brand-red: #ED1C24;
+  --color-brand-black: #1A1A1A;
+  --color-brand-gold: #C5A059;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 antialiased;
+}

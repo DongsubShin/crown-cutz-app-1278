@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crown Cutz | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1E293B; background-color: #FFFFFF; }
+        .sidebar-link.active { background-color: #1E3A5F; color: white; }
+        .sidebar-link:not(.active):hover { background-color: #F1F5F9; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .primary-bg { background-color: #1E3A5F; }
+        .primary-text { color: #1E3A5F; }
+        .secondary-bg { background-color: #F59E0B; }
+        .secondary-text { color: #F59E0B; }
+        .card-slate { background-color: #F8FAFC; border: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-60 h-full border-r border-slate-200 flex flex-col flex-shrink-0 bg-white">
+        <div class="p-6">
+            <span class="text-xl font-bold primary-text">Crown Cutz</span>
+        </div>
+        
+        <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+            <div class="pb-4">
+                <p class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Main</p>
+                <a href="#" onclick="showPanel('dashboard', this)" class="sidebar-link active flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:layout-dashboard"></span>
+                    Dashboard
+                </a>
+                <a href="#" onclick="showPanel('queue', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:users-round"></span>
+                    Live Queue
+                </a>
+            </div>
+
+            <div class="pb-4">
+                <p class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Management</p>
+                <a href="#" onclick="showPanel('clients', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:contact-2"></span>
+                    Clients
+                </a>
+                <a href="#" onclick="showPanel('commission', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:banknote"></span>
+                    Commission
+                </a>
+                <a href="#" onclick="showPanel('loyalty', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:award"></span>
+                    Loyalty Program
+                </a>
+            </div>
+
+            <div class="pb-4">
+                <p class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Insights</p>
+                <a href="#" onclick="showPanel('analytics', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:bar-chart-3"></span>
+                    Analytics
+                </a>
+            </div>
+
+            <div class="pb-4">
+                <p class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">System</p>
+                <a href="#" onclick="showPanel('sms', this)" class="sidebar-link flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 transition-colors">
+                    <span class="iconify mr-3 text-lg" data-icon="lucide:message-square"></span>
+                    SMS Settings
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200">
+            <div class="flex items-center">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Admin" class="w-8 h-8 rounded-full bg-slate-200">
+                <div class="ml-3">
+                    <p class="text-sm font-bold text-slate-900">Marcus King</p>
+                    <p class="text-xs text-slate-500">Shop Owner</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <!-- Top Header -->
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div class="flex items-center space-x-4">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="flex items-center space-x-2 text-sm text-slate-500">
+                        <li>Admin</li>
+                        <li><span class="iconify" data-icon="lucide:chevron-right"></span></li>
+                        <li class="font-semibold text-slate-900" id="breadcrumb-active">Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <span class="iconify" data-icon="lucide:search"></span>
+                    </span>
+                    <input type="text" placeholder="Search clients..." class="pl-10 pr-4 py-2 bg-slate-100 border-transparent focus:bg-white focus:ring-2 focus:ring-blue-500 rounded-md text-sm w-64 transition-all">
+                </div>
+                <button class="relative text-slate-500 hover:text-slate-700">
+                    <span class="iconify text-xl" data-icon="lucide:bell"></span>
+                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-8 bg-white">
+            
+            <!-- Dashboard Panel -->
+            <section id="panel-dashboard" class="panel active space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-2 bg-blue-100 text-blue-700 rounded-md"><span class="iconify" data-icon="lucide:calendar-check"></span></span>
+                            <span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span>
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">Bookings Today</p>
+                        <h3 class="text-2xl font-bold mt-1">42</h3>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-2 bg-amber-100 text-amber-700 rounded-md"><span class="iconify" data-icon="lucide:dollar-sign"></span></span>
+                            <span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+$420</span>
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">Revenue Today</p>
+                        <h3 class="text-2xl font-bold mt-1">$1,840</h3>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-2 bg-red-100 text-red-700 rounded-md"><span class="iconify" data-icon="lucide:user-x"></span></span>
+                            <span class="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded">-2%</span>
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">No-Show Rate</p>
+                        <h3 class="text-2xl font-bold mt-1">4.2%</h3>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-2 bg-purple-100 text-purple-700 rounded-md"><span class="iconify" data-icon="lucide:clock"></span></span>
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">Avg. Wait Time</p>
+                        <h3 class="text-2xl font-bold mt-1">18 min</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 card-slate p-6 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-6">Weekly Performance</h4>
+                        <canvas id="dashboardChart" height="250"></canvas>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-4">Active Barbers (8)</h4>
+                        <div class="space-y-4">
+                            <!-- Barber Item -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600">JS</div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-bold">Jordan Smith</p>
+                                        <p class="text-xs text-green-600">In Session</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">$420.00</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600">AR</div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-bold">Alex Rivera</p>
+                                        <p class="text-xs text-slate-400">Available</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">$385.50</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600">TB</div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-bold">Tyrone B.</p>
+                                        <p class="text-xs text-amber-600">On Break</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">$210.00</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 py-2 text-sm font-semibold primary-text border border-slate-200 rounded-md hover:bg-slate-50">View All Staff</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clients Panel -->
+            <section id="panel-clients" class="panel space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Client Management</h2>
+                    <button class="primary-bg text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center">
+                        <span class="iconify mr-2" data-icon="lucide:plus"></span> Add Client
+                    </button>
+                </div>
+                <div class="card-slate rounded-lg overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-100 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Client</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Last Visit</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Total Visits</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Loyalty Points</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Status</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">JD</div>
+                                        <div class="ml-3">
+                                            <p class="text-sm font-bold">John Doe</p>
+                                            <p class="text-xs text-slate-500">john@example.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm">Oct 24, 2023</td>
+                                <td class="px-6 py-4 text-sm">12</td>
+                                <td class="px-6 py-4 text-sm">240 pts</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">VIP</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600"><span class="iconify" data-icon="lucide:more-horizontal"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold">MS</div>
+                                        <div class="ml-3">
+                                            <p class="text-sm font-bold">Mike Smith</p>
+                                            <p class="text-xs text-slate-500">mike.s@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm">Oct 20, 2023</td>
+                                <td class="px-6 py-4 text-sm">4</td>
+                                <td class="px-6 py-4 text-sm">80 pts</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 text-xs font-medium bg-slate-100 text-slate-600 rounded-full">Regular</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600"><span class="iconify" data-icon="lucide:more-horizontal"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Queue Panel -->
+            <section id="panel-queue" class="panel space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold">Live Walk-in Queue</h2>
+                        <p class="text-sm text-slate-500">Manage customers waiting in the shop</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="secondary-bg text-white px-4 py-2 rounded-md text-sm font-semibold">Pause Queue</button>
+                        <button class="primary-bg text-white px-4 py-2 rounded-md text-sm font-semibold">Check-in Walk-in</button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Waiting List -->
+                    <div class="md:col-span-2 space-y-4">
+                        <div class="card-slate p-4 rounded-lg flex items-center justify-between border-l-4 border-amber-500">
+                            <div class="flex items-center">
+                                <div class="text-2xl font-bold text-slate-300 mr-4">01</div>
+                                <div>
+                                    <p class="font-bold">David Wilson</p>
+                                    <p class="text-xs text-slate-500">Waiting for: Any Barber • Haircut & Beard</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-bold text-amber-600">8 min wait</p>
+                                <button class="mt-1 text-xs font-bold primary-text">Assign Barber</button>
+                            </div>
+                        </div>
+                        <div class="card-slate p-4 rounded-lg flex items-center justify-between border-l-4 border-slate-300">
+                            <div class="flex items-center">
+                                <div class="text-2xl font-bold text-slate-300 mr-4">02</div>
+                                <div>
+                                    <p class="font-bold">Chris Evans</p>
+                                    <p class="text-xs text-slate-500">Waiting for: Jordan Smith • Fade</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-bold text-slate-500">15 min wait</p>
+                                <button class="mt-1 text-xs font-bold text-slate-400">Notify SMS</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Queue Stats -->
+                    <div class="space-y-6">
+                        <div class="card-slate p-6 rounded-lg">
+                            <h4 class="font-bold mb-4">Queue Summary</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Total Waiting</span>
+                                    <span class="font-bold">5 People</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Est. Wait Time</span>
+                                    <span class="font-bold">35 mins</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Longest Wait</span>
+                                    <span class="font-bold">22 mins</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Panel -->
+            <section id="panel-analytics" class="panel space-y-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Business Analytics</h2>
+                    <select class="bg-white border border-slate-200 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option>Last 30 Days</option>
+                        <option>Last 90 Days</option>
+                        <option>Year to Date</option>
+                    </select>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-6">Revenue Trends</h4>
+                        <canvas id="revenueChart" height="300"></canvas>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-lg mb-6">Booking Sources</h4>
+                        <canvas id="sourceChart" height="300"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Commission Panel -->
+            <section id="panel-commission" class="panel space-y-6">
+                <h2 class="text-2xl font-bold">Commission Tracking</h2>
+                <div class="card-slate rounded-lg overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-100 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Barber</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Total Sales</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Commission %</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Tips</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">Net Payout</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="px-6 py-4 font-bold">Jordan Smith</td>
+                                <td class="px-6 py-4">$2,450.00</td>
+                                <td class="px-6 py-4">60%</td>
+                                <td class="px-6 py-4">$420.00</td>
+                                <td class="px-6 py-4 font-bold text-green-600">$1,890.00</td>
+                                <td class="px-6 py-4 text-right">
+                                    <span class="px-2 py-1 text-xs font-medium bg-slate-100 text-slate-600 rounded-full">Pending</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold">Alex Rivera</td>
+                                <td class="px-6 py-4">$1,980.00</td>
+                                <td class="px-6 py-4">55%</td>
+                                <td class="px-6 py-4">$310.00</td>
+                                <td class="px-6 py-4 font-bold text-green-600">$1,399.00</td>
+                                <td class="px-6 py-4 text-right">
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">Paid</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Loyalty Panel -->
+            <section id="panel-loyalty" class="panel space-y-6">
+                <h2 class="text-2xl font-bold">Loyalty Program</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-slate p-6 rounded-lg">
+                        <h4 class="font-bold mb-4">Program Rules</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Points per $1 spent</label>
+                                <input type="number" value="1" class="w-full border border-slate-200 rounded-md px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Signup Bonus Points</label>
+                                <input type="number" value="50" class="w-full border border-slate-200 rounded-md px-3 py-2 text-sm">
+                            </div>
+                            <button class="primary-bg text-white px-4 py-2 rounded-md text-sm font-semibold w-full">Save Rules</button>
+                        </div>
+                    </div>
+                    <div class="card-slate p-6 rounded-lg">
+                        <h4 class="font-bold mb-4">Active Rewards</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-white rounded border border-slate-100">
+                                <div>
+                                    <p class="text-sm font-bold">Free Beard Trim</p>
+                                    <p class="text-xs text-slate-500">100 Points</p>
+                                </div>
+                                <span class="iconify text-slate-400" data-icon="lucide:edit-3"></span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white rounded border border-slate-100">
+                                <div>
+                                    <p class="text-sm font-bold">20% Off Any Service</p>
+                                    <p class="text-xs text-slate-500">250 Points</p>
+                                </div>
+                                <span class="iconify text-slate-400" data-icon="lucide:edit-3"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SMS Panel -->
+            <section id="panel-sms" class="panel space-y-6">
+                <h2 class="text-2xl font-bold">SMS Notifications</h2>
+                <div class="card-slate p-6 rounded-lg space-y-6 max-w-2xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold">Appointment Reminders</p>
+                            <p class="text-sm text-slate-500">Send SMS 24 hours before appointment</p>
+                        </div>
+                        <button class="w-12 h-6 bg-blue-600 rounded-full relative"><span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></span></button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold">Waitlist Updates</p>
+                            <p class="text-sm text-slate-500">Notify walk-ins when they are next in line</p>
+                        </div>
+                        <button class="w-12 h-6 bg-blue-600 rounded-full relative"><span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></span></button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold">Marketing Campaigns</p>
+                            <p class="text-sm text-slate-500">Allow sending bulk SMS to client list</p>
+                        </div>
+                        <button class="w-12 h-6 bg-slate-200 rounded-full relative"><span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></span></button>
+                    </div>
+                    <hr class="border-slate-200">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Reminder Template</label>
+                        <textarea class="w-full border border-slate-200 rounded-md px-3 py-2 text-sm h-24">Hi [ClientName], this is a reminder for your appointment at Crown Cutz tomorrow at [Time]. See you then!</textarea>
+                    </div>
+                    <button class="primary-bg text-white px-6 py-2 rounded-md text-sm font-semibold">Update Settings</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Panel Switching Logic
+        function showPanel(panelId, element) {
+            // Update Sidebar Links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active', 'primary-bg', 'text-white');
+                link.classList.add('text-slate-600');
+            });
+            element.classList.add('active');
+            element.classList.remove('text-slate-600');
+
+            // Update Panels
+            document.querySelectorAll('.panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById('panel-' + panelId).classList.add('active');
+
+            // Update Breadcrumb
+            document.getElementById('breadcrumb-active').innerText = element.innerText.trim();
+
+            // Re-render charts if needed (Chart.js needs visibility to calculate size)
+            if(panelId === 'analytics') {
+                initAnalyticsCharts();
+            }
+        }
+
+        // Charts Initialization
+        const ctxDash = document.getElementById('dashboardChart').getContext('2d');
+        new Chart(ctxDash, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Bookings',
+                    data: [32, 45, 38, 51, 62, 85, 42],
+                    borderColor: '#1E3A5F',
+                    backgroundColor: 'rgba(30, 58, 95, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        function initAnalyticsCharts() {
+            const ctxRev = document.getElementById('revenueChart').getContext('2d');
+            if(!window.revChart) {
+                window.revChart = new Chart(ctxRev, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [12000, 15000, 13500, 18000],
+                            backgroundColor: '#1E3A5F'
+                        }]
+                    }
+                });
+            }
+
+            const ctxSrc = document.getElementById('sourceChart').getContext('2d');
+            if(!window.srcChart) {
+                window.srcChart = new Chart(ctxSrc, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Online Booking', 'Walk-in', 'Phone'],
+                        datasets: [{
+                            data: [65, 25, 10],
+                            backgroundColor: ['#1E3A5F', '#F59E0B', '#94A3B8']
+                        }]
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

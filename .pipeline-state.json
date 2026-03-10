@@ -1,0 +1,48 @@
+{
+  "projectDir": "/Users/dongsub/Documents/Potential/projects/hire-agent/agent-house-bot/generated/crown-cutz-app-f71f4009",
+  "orderId": "a4196593-484c-4678-8805-4c9d40d6119e",
+  "input": {
+    "app_name": "crown-cutz-app",
+    "features": [
+      "booking",
+      "walk-in-queue",
+      "client-crm",
+      "sms-reminders",
+      "sms-marketing",
+      "loyalty",
+      "analytics-full",
+      "commission-tracking",
+      "payments"
+    ],
+    "business_info": {
+      "name": "Crown Cutz",
+      "address": "Houston, TX",
+      "barber_count": 8,
+      "booking_system": "Square (dropping this month)"
+    },
+    "message": "Putting together the full spec for Crown Cutz now — give me a minute.",
+    "stop_after": "prd"
+  },
+  "completedPhases": [
+    "init",
+    "prd",
+    "design",
+    "database",
+    "backend",
+    "frontend",
+    "integrate",
+    "verify-build"
+  ],
+  "phaseResults": [
+    "Setting up your project: Scaffolded 9 files",
+    "Generating your requirements document: Generated PRD: crown-cutz-app_PRD_260310.md (12433 chars). Sent to client for review.",
+    "Designing your pages: Generated 2 HTML designs: User App, Admin Dashboard",
+    "Setting up your data storage: Generated 12 database files (entities + migration)",
+    "Building the backend: Generated 10 backend files (controllers, services, DTOs)",
+    "Building the user interface: Generated 13 frontend files (pages, components, hooks)",
+    "Wiring frontend to backend APIs: Integration included in frontend build",
+    "Verifying your app builds correctly: BUILD VERIFICATION FAILED: Backend build failed: Command failed: npm run build\n\u001b[96msrc/app.module.ts\u001b[0m:\u001b[93m1\u001b[0m:\u001b[93m24\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2307: \u001b[0mCannot find module '@nestjs/common' or its corresponding type declarations.\n\n\u001b[7m1\u001b[0m; Frontend build failed: Command failed: npm run build"
+  ],
+  "createdAt": "2026-03-10T04:27:19.827Z",
+  "updatedAt": "2026-03-10T04:33:51.712Z"
+}

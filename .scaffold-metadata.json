@@ -1,0 +1,24 @@
+{
+  "projectId": "5572c797",
+  "appName": "crown-cutz-app",
+  "businessName": "Crown Cutz",
+  "features": [
+    "booking",
+    "walk-in-queue",
+    "client-crm",
+    "sms-reminders",
+    "sms-marketing",
+    "loyalty",
+    "analytics-full",
+    "commission-tracking",
+    "payments"
+  ],
+  "businessInfo": {
+    "name": "Crown Cutz",
+    "address": "Houston, TX",
+    "barber_count": 8,
+    "booking_system": "Square (dropping this month)"
+  },
+  "generatedDir": "/Users/dongsub/Documents/Potential/projects/hire-agent/agent-house-bot/generated/crown-cutz-app-f71f4009",
+  "createdAt": "2026-03-10T04:27:45.545Z"
+}
